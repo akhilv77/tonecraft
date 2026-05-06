@@ -227,7 +227,7 @@ export default function Options() {
               ToneCraft v1.0.0 · Akhil Varma Gadiraju
             </span>
             <a
-              href="https://nuevesolutions.github.io/tonecraft/privacy-policy"
+              href="https://akhilv77.github.io/tonecraft/store-assets/privacy-policy.html"
               target="_blank"
               rel="noreferrer"
               className="text-xs text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors"
