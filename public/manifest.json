@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "ToneCraft – AI Text Rewriter",
+  "version": "1.0.0",
+  "description": "Instantly rewrite selected text or emails in Polite, Formal, or Elaborate tone using AI.",
+  "minimum_chrome_version": "116",
+  "author": "Akhil Varma Gadiraju",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ToneCraft – AI Text Rewriter",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src https://openrouter.ai;"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://openrouter.ai/*"
+  ],
+  "commands": {
+    "open-popup": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Open ToneCraft popup"
+    }
+  }
+}

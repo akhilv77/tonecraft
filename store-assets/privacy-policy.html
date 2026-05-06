@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – ToneCraft</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #f9fafb;
+    }
+    .wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .logo {
+      width: 40px; height: 40px;
+      background: #4f46e5;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 18px;
+      flex-shrink: 0;
+    }
+    .brand { font-weight: 700; font-size: 18px; }
+    .brand span { font-weight: 400; color: #6b7280; font-size: 13px; display: block; }
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .updated { font-size: 13px; color: #6b7280; margin-bottom: 40px; }
+    h2 {
+      font-size: 17px; font-weight: 600;
+      margin: 36px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    p { color: #374151; margin-bottom: 12px; }
+    ul { color: #374151; padding-left: 20px; margin-bottom: 12px; }
+    li { margin-bottom: 6px; }
+    a { color: #4f46e5; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: #eef2ff;
+      border-left: 3px solid #4f46e5;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #3730a3;
+    }
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">T</div>
+      <div class="brand">ToneCraft <span>AI Text Rewriter</span></div>
+    </header>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 2025</p>
+
+    <div class="highlight">
+      ToneCraft does not collect, store, or transmit any personal data to its own servers.
+      There are no analytics, no user accounts, and no data sales — ever.
+    </div>
+
+    <h2>1. What data we process</h2>
+    <p>ToneCraft processes the following data locally on your device:</p>
+    <ul>
+      <li><strong>Selected text</strong> — text you highlight on a webpage. Stored temporarily in <code>chrome.storage.local</code> to pass it to the popup. It is never sent anywhere except to the OpenRouter API when you click a tone button.</li>
+      <li><strong>OpenRouter API key</strong> — the key you enter during onboarding or in Settings. Stored in <code>chrome.storage.sync</code> (Chrome's built-in encrypted sync storage). It leaves your device only in the <code>Authorization</code> header of requests to <code>https://openrouter.ai/api/v1/chat/completions</code>.</li>
+      <li><strong>Preferences</strong> — dark mode setting and chosen AI model. Stored in <code>chrome.storage.sync</code> and never transmitted to any server.</li>
+    </ul>
+
+    <h2>2. How your selected text is used</h2>
+    <p>
+      When you click Polite, Formal, or Elaborate, the selected text is sent directly from your browser
+      to the OpenRouter API (<a href="https://openrouter.ai" target="_blank" rel="noreferrer">openrouter.ai</a>)
+      using your own API key. The request goes directly from your browser to OpenRouter — no intermediate server.
+    </p>
+    <p>
+      OpenRouter's handling of that data is governed by their own
+      <a href="https://openrouter.ai/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.
+      We recommend reviewing it before use.
+    </p>
+
+    <h2>3. Data we do NOT collect</h2>
+    <ul>
+      <li>We do not operate any servers or databases.</li>
+      <li>We do not collect usage analytics, crash reports, or telemetry of any kind.</li>
+      <li>We do not track which websites you visit or what text you select.</li>
+      <li>We do not share any data with third parties (other than the OpenRouter request described above).</li>
+      <li>We do not use cookies or any tracking technology.</li>
+    </ul>
+
+    <h2>4. Permissions used</h2>
+    <ul>
+      <li><strong>storage</strong> — to save your API key, model choice, and dark mode preference locally in your browser.</li>
+      <li><strong>activeTab</strong> — to access the current tab when you open the popup via keyboard shortcut or context menu.</li>
+      <li><strong>contextMenus</strong> — to add the "Rewrite with ToneCraft" option when you right-click selected text.</li>
+      <li><strong>host_permissions (openrouter.ai)</strong> — to allow the popup to call the OpenRouter API directly from your browser.</li>
+    </ul>
+
+    <h2>5. Data retention</h2>
+    <p>
+      Selected text is stored in <code>chrome.storage.local</code> and is overwritten each time you make a new selection.
+      Your API key and preferences remain in <code>chrome.storage.sync</code> until you clear them in the Settings page
+      or uninstall the extension.
+    </p>
+    <p>
+      Uninstalling ToneCraft removes all locally stored data immediately.
+    </p>
+
+    <h2>6. Children's privacy</h2>
+    <p>
+      ToneCraft is not directed at children under 13. We do not knowingly process data from children.
+    </p>
+
+    <h2>7. Changes to this policy</h2>
+    <p>
+      If we make material changes, we will update the "Last updated" date above and, where appropriate,
+      notify users via the Chrome Web Store listing.
+    </p>
+
+    <h2>8. Contact</h2>
+    <p>
+      Questions about this policy? Reach us at
+      <a href="mailto:akhilgadiraju@gmail.com">akhilgadiraju@gmail.com</a>.
+    </p>
+
+    <footer>
+      © 2025 Akhil Varma Gadiraju · ToneCraft – AI Text Rewriter
+    </footer>
+  </div>
+</body>
+</html>

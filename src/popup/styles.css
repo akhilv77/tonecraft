@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  min-width: 400px;
+  min-height: 200px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrollbar for output areas */
+.scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 2px;
+}
+
+.dark .scrollable::-webkit-scrollbar-thumb {
+  background-color: #475569;
+}
