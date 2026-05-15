@@ -10,16 +10,23 @@ function handleMouseUp(): void {
   if (debounceTimer) clearTimeout(debounceTimer)
 
   debounceTimer = setTimeout(() => {
-    const selection = window.getSelection()
-    if (!selection) return
+    try {
+      // Both checks guard against an invalidated extension context:
+      // chrome.runtime.id → undefined when context is dead
+      // chrome.storage    → undefined when context is partially torn down
+      if (!chrome.runtime?.id || !chrome.storage) return
 
-    const text = selection.toString().trim()
-    if (!text || text.length < 3) return
+      const selection = window.getSelection()
+      if (!selection) return
 
-    // Cap at 20,000 chars — prevents storing entire documents and avoids
-    // hitting chrome.storage quota or sending enormous prompts to the API.
-    const capped = text.length > 20_000 ? text.slice(0, 20_000) : text
-    chrome.storage.local.set({ selectedText: capped })
+      const text = selection.toString().trim()
+      if (!text || text.length < 3) return
+
+      const capped = text.length > 20_000 ? text.slice(0, 20_000) : text
+      chrome.storage.local.set({ selectedText: capped }).catch(() => {})
+    } catch {
+      // Swallow any synchronous throws from a dead extension context
+    }
   }, 250)
 }
 
