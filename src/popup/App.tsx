@@ -89,14 +89,18 @@ export default function App() {
   const [copied, setCopied]       = useState(false)
   const [activeTone, setActiveTone] = useState<Tone | null>(null)
   const [onboarding, setOnboarding] = useState<'loading' | 'show' | 'done'>('loading')
+  const [pendingTone, setPendingTone] = useState<Tone | null>(null)
   const outputRef  = useRef<HTMLDivElement>(null)
   const abortRef   = useRef<AbortController | null>(null)
 
   useEffect(() => {
-    // Check API key in local storage (never synced)
-    chrome.storage.local.get(['apiKey'], (local) => {
+    chrome.storage.local.get(['apiKey', 'selectedTone'], (local) => {
       const hasKey = Boolean(local.apiKey && !chrome.runtime.lastError)
       setOnboarding(hasKey ? 'done' : 'show')
+      if (local.selectedTone) {
+        setPendingTone(local.selectedTone as Tone)
+        chrome.storage.local.remove(['selectedTone'])
+      }
     })
     // Load non-sensitive preferences from sync storage
     chrome.storage.sync.get(['darkMode'], (synced) => {
@@ -129,6 +133,15 @@ export default function App() {
       setActiveTone(null)
     }
   }, [selectedText])
+
+  // Auto-trigger when a tone was chosen from the context menu submenu
+  useEffect(() => {
+    if (pendingTone && selectedText && onboarding === 'done') {
+      handleTone(pendingTone)
+      setPendingTone(null)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingTone, selectedText, onboarding])
 
   async function handleTone(tone: Tone) {
     if (!selectedText || loading) return
